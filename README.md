@@ -1,3 +1,3 @@
 # CSharp
 
-This is my C# repository, used to store and share some code snippets.
+This is my repository for C# code snippets.
