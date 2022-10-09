@@ -2,6 +2,10 @@
 This is a manual implemenation
 of the Binary search algorithm
 
+This implementation allows to
+provide the starting index values
+for the left and right pointers
+
 It's important to note that the
 array must be sorted in order
 for the Binary search algorithm
