@@ -2,6 +2,15 @@
 This is a manual implemenation
 of the Binary search algorithm
 
+This implemenation only takes
+the array and the target value
+as arguments, thus it performs
+the search on the whole array,
+unlike the binarySearch_V1 were
+we provide the index values for
+the left and right pointer,
+allowing to slice the array
+
 It's important to note that the
 array must be sorted in order
 for the Binary search algorithm
