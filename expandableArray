@@ -1,0 +1,112 @@
+/* This is a custom class that aims to create an expandable Array like data type;
+     * It can be used as an way of operating arrays, allowing to convert the values back
+     * to and array after the operations are finished.
+     * 
+     * Note: the full class implementation is not yet complete;
+     */
+
+    private static void Main(string[] args)
+    {
+        int[] myArray = { 1, 4, 2, 11, 52 };
+        ExpandableArray expArray = new ExpandableArray(myArray);
+
+        // Some test cases
+        Console.Write("Original elements of ExpandableArray expArray: ");
+        expArray.Print();
+
+        Console.WriteLine();
+        Console.WriteLine($"Length: {expArray.Length}");
+        Console.WriteLine();
+
+        Console.WriteLine("Adding numbers 6, 142 and 35 to expArray;");
+        expArray.Add(6);
+        expArray.Add(142);
+        expArray.Add(35);
+        Console.WriteLine();
+
+        Console.Write("Expanded ExpandableArray expArray:");
+        expArray.Print();
+
+        Console.WriteLine();
+        Console.WriteLine($"Length: {expArray.Length}");
+        Console.WriteLine();
+
+        // Assignment of the values of expArray to Array newArray;
+        int[] newArray = expArray.ToArray;
+        foreach (int item in newArray)
+        {
+            Console.Write(item + " ");
+        }
+
+        Console.WriteLine();
+        Console.WriteLine(newArray.Length);
+        Console.WriteLine();
+
+
+        // Concatenating with newArray2
+        int[] newArray2 = { 55, 79, 263, 2 };
+
+        expArray.Concatenate(newArray2);
+        expArray.Print();
+        Console.WriteLine();
+        Console.WriteLine($"Length: {expArray.Length}");
+        Console.WriteLine();
+    }
+}
+
+
+public class ExpandableArray
+{
+    private int length;
+    private int[] data;
+    private int[] tempArray;
+
+    public int Length
+    {
+        get { return length; }
+    }
+
+    public int[] ToArray
+    {
+        get { return data; }
+    }
+
+    public ExpandableArray(int[] inputArray)
+    {
+        length = inputArray.Length;
+        data = new int[length];
+        Array.Copy(inputArray, data, inputArray.Length);
+    }
+
+    public void Add(int value)
+    {
+        tempArray = new int[length];
+
+        Array.Copy(data, tempArray, data.Length);
+
+        length++;
+
+        data = new int[length];
+        Array.Copy(tempArray, data, tempArray.Length);
+        data[data.Length - 1] = value;
+    }
+
+    public void Print()
+    {
+        for (int i = 0; i < this.Length; i++)
+        {
+            Console.Write(this.data[i]);
+            if(i < this.Length - 1)
+            {
+                Console.Write(", ");
+            }
+        }
+    }
+
+    public void Concatenate(int[] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+        {
+            this.Add(arr[i]);
+        }
+    }
